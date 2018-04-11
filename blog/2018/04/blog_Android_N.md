@@ -56,14 +56,18 @@ Android 7.0是Google推出的智能手机操作系统，最终官方代号，定
     authorities 组件标识,都以包名开头,避免和其它应用发生冲突。
 
 * 2. 在 res 下新建xml 文件夹 ，创建 file_paths
+
 ```java
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <paths>
-        <files-path name="my_images" path="images"/>
-    </paths>
-</resources>
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <paths>
+            <files-path name="my_images" path="images"/>
+        </paths>
+    </resources>
+
 ```
+
 name：一个引用字符串。
 
 path：文件夹“相对路径”，完整路径取决于当前的标签类型。
