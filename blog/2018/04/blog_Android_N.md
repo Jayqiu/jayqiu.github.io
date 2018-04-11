@@ -35,7 +35,7 @@ Android 7.0是Google推出的智能手机操作系统，最终官方代号，定
 
 #### 使用到FileProvider
 解决这个问题我们需要:
-* 1. 在manifest 文件中注册provider
+* 1.在manifest 文件中注册provider
 
 ```java
  <provider
@@ -55,7 +55,7 @@ Android 7.0是Google推出的智能手机操作系统，最终官方代号，定
 
     authorities 组件标识,都以包名开头,避免和其它应用发生冲突。
 
-* 2. 在 res 下新建xml 文件夹 ，创建 file_paths
+* 2.在 res 下新建xml 文件夹 ，创建 file_paths
 
 ```java
 
@@ -97,7 +97,9 @@ path：文件夹“相对路径”，完整路径取决于当前的标签类型�
     <root-path name="name" path="path" />
     物理路径相当于/path/。
 
-* 3. 生成content://类型的Uri
+
+
+* 3.生成content://类型的Uri
 
     * 1.将 Uri的scheme类型为file的Uri改成了有FileProvider创建一个content类型的Uri。
 
