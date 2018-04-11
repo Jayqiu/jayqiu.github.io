@@ -77,6 +77,7 @@ path：文件夹“相对路径”，完整路径取决于当前的标签类型�
 <paths>这个元素内可以包含以下一个或多个，具体如下：
 
  ```java
+
     <files-path name="name" path="path" />
     物理路径相当于Context.getFilesDir() + /path/。
 
@@ -97,6 +98,7 @@ path：文件夹“相对路径”，完整路径取决于当前的标签类型�
     使用外置SD卡
     <root-path name="name" path="path" />
     物理路径相当于/path/。
+    
  ```
 
 
