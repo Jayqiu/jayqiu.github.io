@@ -219,6 +219,7 @@ D/ActMain: onDestroy
  ```
 
  这样我们也达到了相同的效果，还不用比较臃肿的调用
+
 Lifecycle 结构：
 
 ![](https://jayqiu.github.io/blog/2018/04/img/04-17-lifecycle.jpg)
@@ -231,7 +232,7 @@ Lifecycle 结构：
 
 * State(当前生命周期所处状态)：如图所示。
 
-![Lifecycle 结构](sequency_lifecycle.png)
+![](sequency_lifecycle.png)
 
 * Event(当前生命周期改变对应的事件)：如图所示，当Lifecycle发生改变，如进入onCreate,会自动发出ON_CREATE事件。
 
