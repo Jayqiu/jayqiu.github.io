@@ -232,7 +232,7 @@ Lifecycle 结构：
 
 * State(当前生命周期所处状态)：如图所示。
 
-![](sequency_lifecycle.png)
+![](https://jayqiu.github.io/blog/2018/04/img/sequency_lifecycle.png)
 
 * Event(当前生命周期改变对应的事件)：如图所示，当Lifecycle发生改变，如进入onCreate,会自动发出ON_CREATE事件。
 
