@@ -148,6 +148,8 @@ public class MainPresenter implements IPresenter {
     @Override
     public void onDestroy(@NonNull LifecycleOwner owner) {
         Log.d(TAG, "onDestroy");
+
+          owner.getLifecycle().removeObserver(this);
     }
 }
 
