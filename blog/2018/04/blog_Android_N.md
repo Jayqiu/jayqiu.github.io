@@ -1,5 +1,8 @@
 #  Android 7.0 (Nougat、牛轧糖)
 
+
+[Google Android 7.0 开发者版本](https://developer.android.google.cn/about/versions/nougat/android-7.0.html?hl=zh-cn)
+
 Android 7.0是Google推出的智能手机操作系统，最终官方代号，定名为“Nougat”（牛轧糖）。2016年的Google I/O开发者大会在美国西部时间2016年5月18-20日召开，地点为山景城的Shoreline Ampitheatre圆形剧场。2016年8月22日，Google正式推送Android 7.0 Nougat正式版
 
 2016年12月5日，Google为Android 7.0发布了重要的维护性更新，也就是Android 7.1。 [3]  Android 7.1的一个小版本更新——安卓7.1.2已于2017年4月3日推送。
