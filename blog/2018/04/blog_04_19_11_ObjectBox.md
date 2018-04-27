@@ -244,5 +244,78 @@ boolean start=  new AndroidObjectBrowser(mBoxStore).start(this);
 
 
 
+## 升华
+
+###  事务：
+
+在前文中 直接的for 循环的去添加数据是不正确的，而且还是在主线程中，会使APP卡顿，或者crash；
+
+通过源码分析看到几乎所有ObjectBox的操作都涉及事务。如果你调用put方法，会使用一个写事务。
+
+```java
+Box.java
+
+    public long put(T entity) {
+        Cursor<T> cursor = getWriter();
+        try {
+            long key = cursor.put(entity);
+            commitWriter(cursor);
+            return key;
+        } finally {
+            releaseWriter(cursor);
+        }
+    }
+
+       void commitWriter(Cursor<T> cursor) {
+        // NOP if TX is ongoing
+        if (activeTxCursor.get() == null) {
+            cursor.close();
+            cursor.getTx().commitAndClose();
+        }
+    }
+
+Cursor.java
+
+  public Transaction getTx() {
+        return tx;
+    }
+
+```
+但是对应更复杂的应用，通常值得学习事务的知识，以使您的应用程序更加的高效。
+
+BoxStore类 提供以下方法来执行显式事务：
+
+runInTx：在事务内运行runnable 。
+
+runInReadTx：在只读事务中运行runnable 。与写入事务不同，多个读取事务可以同时运行。
+
+runInTxAsync将给定的Runnable作为单独线程中的事务运行。一旦事务完成，给定的callback 被调用（回调可能为空）。
+
+callInTx: 类似runInTx, 支持一个返回值和异常抛出。
+
+
+eg: 
+```java
+
+ MyApplication.getBoxStore().runInTx(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 0; i < 10000; i++) {
+                            UserEntity userEntity = new UserEntity();
+                            userEntity.setAge(20);
+                            userEntity.setUserName("jayqiu" + i);
+                            mBox.put(userEntity);
+                        }
+                    }
+                });
+```
+
+[一对多，多对一 @Relations](http://objectbox.io/documentation/relations/)
+
+[Objectbox API](http://objectbox.io/files/objectbox-java/current/)
+
+
+
+
 
 
