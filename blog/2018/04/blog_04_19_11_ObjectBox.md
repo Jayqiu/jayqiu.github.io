@@ -223,12 +223,12 @@ boolean start=  new AndroidObjectBrowser(mBoxStore).start(this);
  添加后 new AndroidObjectBrowser(mBoxStore).start(this);
 返回为true 但是 浏览器访问不了 ？
 
-1.  网络权限添加
+* 1.网络权限添加
 
 ```java
  <uses-permission android:name="android.permission.INTERNET" />
 ```
-2. 对应
+* 2.对应
 
 ```java
 
