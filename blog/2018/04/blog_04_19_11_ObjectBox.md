@@ -97,6 +97,7 @@ public class MyApplication extends Application {
 * 2.建立user 实体 
 
 ```java
+
 @Entity
 public class UserEntity  {
     @Id
@@ -134,6 +135,7 @@ public class UserEntity  {
 * 3.获取
 
 ```java
+
 public class MainActivity extends AppCompatActivity {
     private Box<UserEntity> mBox;
     private Button mBtnPut;
@@ -222,10 +224,12 @@ boolean start=  new AndroidObjectBrowser(mBoxStore).start(this);
 返回为true 但是 浏览器访问不了 ？
 
 1.  网络权限添加
+2.  
 ```java
  <uses-permission android:name="android.permission.INTERNET" />
 ```
-2. 对应的
+2. 对应
+
 ```java
 
     annotationProcessor "io.objectbox:objectbox-processor:1.5.0"
