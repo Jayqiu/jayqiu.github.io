@@ -2,15 +2,20 @@
 
 目前的技术解决方案
 Serializable：序列化对象为文件，并保存在文件里
+
 SharedPreferences：Android官方提供的缓存文件，以XML形式存储
+
 SQLite：官方数据库
+
 greenDAO( Google Room)：基于SQLite的轻量级ORM
+
 Realm：第三方数据库
+
 ObjectBox：第三方数据库
 
-[ObjectBox 官网](http://objectbox.io/)
+[ObjectBox 官网（点击查看）](http://objectbox.io/)
 
-用过EventBus和GreenDao的都知道他GreenRobot，而 ObjectBox 就是GreenRobot 推出的移动端数据库架构。
+用过EventBus和GreenDao的都知道他GreenRobot，而 ObjectBox 就是GreenRobot 推出的移动端数据库架构，是基于NoSql的特性。
 ## 使用 
 
 ### 1.引入
@@ -195,6 +200,12 @@ public class MainActivity extends AppCompatActivity {
 |@Transient	|如果你有某个字段不想被持久化，可以使用此注解。
 |@Relation	|做一对多，多对一的注解。
 
+
+* 注意：
+
+默认情况下，id是会被objectbox管理的，也就是自增id，如果你想手动管理id需要在注解的时候加上@Id(assignable = true)即可。当你在自己管理id的时候如果超过long的最大值，objectbox 会报错。id=0的表示此对象未被持久化，id的值不能为负数。id的数据类型只能是long.
+。
+
 运行后 默认的数据库位置在： /data/data/包名/files/objectbox/data.mdb 下
 
 也可以在在初始化的时候定义位置：
@@ -295,8 +306,8 @@ callInTx: 类似runInTx, 支持一个返回值和异常抛出。
 
 
 eg: 
-```java
 
+```java
  MyApplication.getBoxStore().runInTx(new Runnable() {
                     @Override
                     public void run() {
@@ -308,11 +319,171 @@ eg:
                         }
                     }
                 });
+
+
+ MyApplication.getBoxStore().runInTxAsync(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 0; i < 10000; i++) {
+                            UserEntity userEntity = new UserEntity();
+                            userEntity.setAge(20);
+                            userEntity.setUserName("jayqiu" + i);
+                            mBox.put(userEntity);
+                        }
+                    }
+                }, new TxCallback<Void>() {
+                    @Override
+                    public void txFinished(@Nullable Void result, @Nullable Throwable error) {
+                        Log.e("Put花费时间：", (System.currentTimeMillis() - startTime) + "");
+                        if(error==null){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(MainActivity.this,"成功",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(MainActivity.this,"失败",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
+                    }
+                });    
+```
+### Relations
+[一对多，多对一 @Relations（点击查看）](http://objectbox.io/documentation/relations/)
+
+我们在现实生活中一个用户可以对应多个的地址，比如家的地址，工作的地址，学校地址等
+
+* 一对多
+ ToOne<>
+
+* 多对一
+ToMany<>
+
+```java
+@Backlink
+public ToMany<> ;
 ```
 
-[一对多，多对一 @Relations](http://objectbox.io/documentation/relations/)
+实体 AddressEntity.java
+```java
+
+ @Entity
+public class AddressEntity {
+    // 可以自定义ID 默认为自增
+    @Id(assignable = true)
+    private  long addId;
+    public ToOne<UserEntity> user;
+    private String address;
+
+    public long getAddId() {
+        return addId;
+    }
+
+    public void setAddId(long addId) {
+        this.addId = addId;
+    }
+
+    public ToOne<UserEntity> getUser() {
+        return user;
+    }
+
+    public void setUser(ToOne<UserEntity> user) {
+        this.user = user;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+}
+```
+
+
+ ```java
+        mBtnrRlationsPut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserEntity userEntity = new UserEntity();
+                userEntity.setUserName(System.currentTimeMillis() + "NAME");
+                userEntity.setAge(25);
+                AddressEntity addressEntity = new AddressEntity();
+                addressEntity.setAddress(System.currentTimeMillis()+"Lu");
+                addressEntity.getUser().setTarget(userEntity);
+                long addId = MyApplication.getBoxStore().boxFor(AddressEntity.class).put(addressEntity);
+
+                Log.e("addId：", addId + "======");
+            }
+        });
+        mBtnrRlationsGut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<AddressEntity> addList = MyApplication.getBoxStore().boxFor(AddressEntity.class).getAll();
+                Log.e("addList：", addList.size() + "======");
+                if(addList!=null&& addList.size()>0){
+                  AddressEntity addressEntity=  addList.get(0);
+                 UserEntity userEntity= addressEntity.getUser().getTarget();
+
+                    Log.e("userEntity：", userEntity.getUserName() + "======");
+                }
+            }
+        });                          
+```
+
+id 只能是long的数据类型
+
+```java
+错误: [ObjectBox] An @Id property has to be of type Long (com.**.objectbox.AddressEntity.addId)	
+
+```
+
+# 更新
+
+[ObjectBox更新数据库实例（点击查看）](http://objectbox.io/documentation/objectbox-entity-property-migration/)
+
+
+
+添加@Uid注解。
+
+make project
+编译, 会报错, 点击as右下 Gradle Console 会有类似报错信息:
+
+```java
+注: [ObjectBox] Starting ObjectBox processor (debug: false)
+错误: [ObjectBox] UID operations for property "LocationEntity.locationTime": [Rename] apply the current UID using @Uid(3939342872662404404L) - 
+
+[Change/reset] apply a new UID using @Uid(7349095691908173825L)
+
+```
+
+你的类名获取字段名称, 编译即可完成
+
+
+把报错信息里后面一个新的数填写到注解里, 此处为:　@Uid(3939342872662404404L)
+
+
+响应的 在ObjectiveBox 都有非常详细的实例
+
+
+[Objectbox 文档](http://objectbox.io/documentation/)
 
 [Objectbox API](http://objectbox.io/files/objectbox-java/current/)
+
+
+
+https://www.jianshu.com/p/38c5d6f239d2
+
+
+
 
 
 
