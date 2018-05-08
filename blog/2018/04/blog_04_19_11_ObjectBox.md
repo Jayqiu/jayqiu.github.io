@@ -1,4 +1,4 @@
-#  ObjectBox Android上速度最快的数据库操作库
+#  ObjectBox Android 上速度最快的数据库操作库
 
 目前的技术解决方案
 Serializable：序列化对象为文件，并保存在文件里
