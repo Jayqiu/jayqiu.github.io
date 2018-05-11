@@ -31,3 +31,7 @@ Google 向 Android 引入了新 App 模式。利用全新发布格式 —— And
 Android Things 作为 Google 旗下的一款操作系统 (OS)，能够帮助开发者规模化开发和维护物联网设备。Google 表示此前推出的开发者预览版的 SDK 下载次数已经突破 10 万，Android Things 1.0 将在本周与各位开发者见面。
 
 Android Things 平台添加了对 3 种新系统模组 (System-on-Modules 或 SoMs) 的支持，并承诺在接下来的三年中提供长期支持，并让开发者自行决定是否需要扩展支持，帮助他们更容易地设计出原型并推向市场。同时还推出了一个 Android Things 控制台 (Android Things Console) ，帮助开发者定期获取 Google 最新稳定性修复包以及安全升级包，从而实现从发布、管理到设备更新的无缝连接。
+
+现在是AI和物联网时代，自己大学也是学习的嵌入式所以对Android Things 还是有很大的兴趣的。
+
+[ Android Things 官网地址](https://developer.android.google.cn/things/)
