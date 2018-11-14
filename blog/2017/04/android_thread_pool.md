@@ -2,6 +2,9 @@
 
 1. ThreadPoolExecutor 
 
+
+Handler发送Message到MessageQueue中保存，Looper会不断的从MessageQueue中获取Message，然后调用与Message绑定Handler的dispatchMessage方法，最终调用会handleMessage进行真正消息处理
+
 Executor作为一个接口，它的具体实现就是ThreadPoolExecutor。
 
 Android中的线程池都是直接或间接通过配置ThreadPoolExecutor来实现不同特性的线程池。
