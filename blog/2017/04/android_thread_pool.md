@@ -1,4 +1,4 @@
-# Android 线程池
+# Android 线程池  ExecutorService
 
 1. ThreadPoolExecutor 
 
@@ -121,6 +121,7 @@ CachedThreadPool只有非核心线程，最大线程数非常大，所有线程�
     LinkedTransferQueue：一个由链表结构组成的无界阻塞队列。
     LinkedBlockingDeque：一个由链表结构组成的双向阻塞队列。
 ```
+
 ```java
 
 1.shutDown()  关闭线程池，不影响已经提交的任务
@@ -141,3 +142,44 @@ CachedThreadPool只有非核心线程，最大线程数非常大，所有线程�
 https://blog.csdn.net/l540675759/article/details/62230562
 
 https://www.jianshu.com/p/7b2da1d94b42
+
+
+
+#   ScheduledExecutorService  将定时任务与线程池功能结合
+
+```java
+// 延时1秒钟执行
+        mScheduledExecutorService.schedule(threadFactory.newThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("jayqiu", "first task");
+            }
+        }), 1, TimeUnit.SECONDS);
+
+
+ // 循环任务，按照上一次任务的发起时间计算下一次任务的开始时间
+        mScheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("jayqiu", "first:" + System.currentTimeMillis() / 1000);
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 1, 1, TimeUnit.SECONDS);
+
+// 循环任务，以上一次任务的结束时间计算下一次任务的开始时间
+        mScheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("jayqiu", "scheduleWithFixedDelay:" + System.currentTimeMillis() / 1000);
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 1, 1, TimeUnit.SECONDS);
+```
