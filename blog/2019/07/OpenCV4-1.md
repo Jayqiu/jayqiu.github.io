@@ -1,6 +1,8 @@
 # Opencv 4.1
 获取不同通道图层显示：
-、、、java
+
+```java
+
 int main(){
     Mat channels[3];
     Mat imageB;
@@ -28,4 +30,5 @@ int main(){
     waitKey(0);
     return 0;
 }
-、、、
+
+```
