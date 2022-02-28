@@ -19,7 +19,7 @@
         }
         function android() {
             var _clickTime = new Date().getTime();
-            window.location.href = 'humanage://com.humanage/openwith?name=zhangsan&age=26';
+            window.location.href = 'utown://io.utown/path?roomid=123456';
             /***打开app的协议，有安卓同事提供***/
             //启动间隔20ms运行的定时器，并检测累计消耗时间是否超过3000ms，超过则结束
             var _count = 0, intHandle;
@@ -39,9 +39,9 @@
                     }
                 }
             }, 20);
- 
+
         }
- 
+
         function ios() {
             var _clickTime = +(new Date());
             var ifr = document.createElement("iframe");
@@ -69,20 +69,18 @@
                 }
             }, 20);
         }
- 
+
         var objbtn = document.getElementById('btn');
         objbtn.onclick = function () {
             openApp()
         }
- 
+
     </script>
 </head>
- 
 <body>
- 
 <div class="btn_line">
     <input type="submit" class="bottom_btn" onclick="android()" value="Start agora">
 </div>
- 
+
 </body>
 </html>　
