@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no;" name="viewport"/>
+    <script>
+        // 检查是否安装app
+        function openApp(e) {
+            var u = window.navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            if (isAndroid) {
+                android();
+            }
+            if (isiOS) {
+                ios();
+            }
+        }
+        function android() {
+            var _clickTime = new Date().getTime();
+            window.location.href = 'humanage://com.humanage/openwith?name=zhangsan&age=26';
+            /***打开app的协议，有安卓同事提供***/
+            //启动间隔20ms运行的定时器，并检测累计消耗时间是否超过3000ms，超过则结束
+            var _count = 0, intHandle;
+            intHandle = setInterval(function () {
+                _count++;
+                var elsTime = new Date().getTime() - _clickTime;
+                if (_count >= 100 || elsTime > 3000) {
+                    clearInterval(intHandle);
+                    //检查app是否打开
+                    if (document.hidden || document.webkitHidden) {
+                        // 打开了
+                        window.close();
+                    } else {
+                        // 没打开
+                        alert('Place download App')
+                        window.location.href = "";//下载链接
+                    }
+                }
+            }, 20);
+ 
+        }
+ 
+        function ios() {
+            var _clickTime = +(new Date());
+            var ifr = document.createElement("iframe");
+            ifr.src = "humanage://com.humanage/openwith?name=zhangsan&age=26";
+            /***打开app的协议，有ios同事提供***/
+            ifr.style.display = "none";
+            document.body.appendChild(ifr);
+            //启动间隔20ms运行的定时器，并检测累计消耗时间是否超过3000ms，超过则结束
+            var _count = 0, intHandle;
+            intHandle = setInterval(function () {
+                _count++;
+                var elsTime = +(new Date()) - _clickTime;
+                console.log(_count, elsTime, +(new Date()), _clickTime)
+                if (_count >= 100 || elsTime > 3000) {
+                    clearInterval(intHandle);
+                    document.body.removeChild(ifr);
+                    //检查app是否打开
+                    if (document.hidden || document.webkitHidden) {
+                        // 打开了
+                        window.close();
+                    } else {
+                        alert('Place download App')
+                        window.location.href = "https://itunes.apple.com/cn/app/id477927812";//下载链接
+                    }
+                }
+            }, 20);
+        }
+ 
+        var objbtn = document.getElementById('btn');
+        objbtn.onclick = function () {
+            openApp()
+        }
+ 
+    </script>
+</head>
+ 
+<body>
+ 
+<div class="btn_line">
+    <input type="submit" class="bottom_btn" onclick="android()" value="Start agora">
+</div>
+ 
+</body>
+</html>　
