@@ -12,4 +12,5 @@ Room 持久性库在 SQLite 上提供了一个抽象层，以便在充分利用 
 出于这些方面的考虑，我们强烈建议您使用 Room，而不是直接使用 SQLite API。
 
 
- Android 2017 IO大会推出了官方数据库框架：Room。Room其实就只是对原生的SQLite API进行了一层封装。
+ Android 2017 IO大会推出了官方数据库框架：Room。Room是一个持久性数据库。Room持久性库提供了SQLite的抽象层，以便在充分利用SQLite的同时允许流畅的数据库访问。
+链接Blog:https://www.jianshu.com/p/cfde3535233d
