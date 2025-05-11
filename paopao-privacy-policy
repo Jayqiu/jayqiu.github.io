@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            color: #2c3e50;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Privacy Policy</h1>
+    <p><strong>Effective Date:</strong> 30 August 2024</p>
+
+    <p>Thank you for using <strong>PaoPao Money Manager</strong> ("the App"). Your privacy is important to us. This Privacy
+        Policy explains how we collect, use, and safeguard your information when you use our App.</p>
+
+    <h2>1. What information does the Application obtain and how is it used?</h2>
+    <p>The Application may collect certain information automatically, including, but not limited to, the type of mobile device you use, 
+	your mobile operating system. All the information above is needed to the app's function for you. </p>
+
+    <h2>2. Does the Application collect your personal information of the device?</h2>
+    <p>This Application does not collect any personal information of your mobile device. 
+	The Application do not have account system, so we will not ask you for personal information (such as your name, email address and an account password). 
+	We don’t collect your Unique Device ID (‘UDID’) and/or IP address and/or GPS location.
+	All the app’s personal information will be saved on your phone or your own third services, 
+	such as Google Drive or Dropbox and iCloud, so no information of yours will be uploaded.</p>
+
+    <h2>3. Children</h2>
+    <p>We do not use the Application to knowingly solicit data from or market to children under the age of 13. 
+	If a parent or guardian becomes aware that his or her child has provided us with information without their consent, 
+	he or she should contact us via email glgjingmarvel@gmail.com. We will delete such information from our files within a reasonable time.</p>
+
+    <h2>4.Changes</h2>
+    <p>This Privacy Policy may be updated from time to time for any reason. 
+	You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p>
+
+    <h2>5. Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational,
+        legal, or regulatory reasons. We will notify you of any significant changes by posting the new Privacy Policy on
+        this page. Please review this Privacy Policy periodically to stay informed about how we protect your
+        information.</p>
+
+    <h2>6. Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy or our data practices, please contact us at:
+        <br>
+        <a href="mailto:jay.qiu087@gmail.com">jay.qiu087@gmail.com</a>
+    </p>
+    </p>
+</body>
+
+</html>
